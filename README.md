@@ -6,11 +6,14 @@ To get this complete package you need to run some commands. In this case we are 
 
     # make subdir
     mkdir $HOME/github
+    
     # clone repository
     git clone https://github.com/gqgunhed/vim-bundle
+    
     # create backup of old .vimrc and .vim subdir
     mv $HOME/.vimrc $HOME/.vimrc_old
     mv $HOME/.vim $HOME/.vim_old
+    
     # create symlinks
     ln -s $HOME/github/vim-bundle/vimrc $HOME/.vimrc
     ln -s $HOME/github/vim-bundle $HOME/.vim
@@ -19,10 +22,13 @@ To get this complete package you need to run some commands. In this case we are 
 Now that we have the symlinks in place we can start to activate the content. First we pull down all submodules I use, or that defined in submodules.txt:
 
     cd $HOME/github/vim-bundle
+    
     # show help message
     python vim_control.py -h
+    
     # install all packages from submodules.txt as git submodules
     python vim_control.py -i all
+    
     # place vim-pathogen into autoload folder
     sh activate_vim-pathogen.sh
     
