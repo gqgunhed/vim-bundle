@@ -34,3 +34,8 @@ Now that we have the symlinks in place we can start to activate the content. Fir
     
 ##Run
 Now is the time to run your newly created vim environment.
+
+
+#Other resources
+* https://github.com/amix/vimrc
+* https://gist.github.com/cridenour/74e7635275331d5afa6b
