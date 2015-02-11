@@ -19,38 +19,33 @@ unlet s:cpo_save
     filetype plugin indent on
     syntax on
 
+" General settings follow
     set nomodeline  "" FreeBSD security advisory
     set nocompatible
-    ""set visualbell
     set noerrorbells
-"" Encodings and Fonts
-    "set fileencodings=utf-8,default,latin1
+" Encodings and Fonts
     set fileencodings=utf-8
     set termencoding=utf-8
     set encoding=utf-8
     set window=59
     "set guifont=DejaVu_Sans_Mono:h11
     set guifont=Source_Code_Pro:h10
-    "set guifont=Sauce_Code_Powerline:h10
     let g:tex_flavors='latex'
-"" help and history
+" help and history
     set helplang=de
     set history=500
-"" Sucheinstellungen
-    set hlsearch    "" Hervorheben der Treffer
-    set incsearch   "" beim Tippen zum ersten Treffer springen
-    set ignorecase
-    set smartcase
+" Search settings
+    set hlsearch    " Hervorheben der Treffer
+    set incsearch   " beim Tippen zum ersten Treffer springen
+    "set ignorecase
+    set smartcase   " search case-insensitive as long as there's no capital letter in the search term
     set showmatch
-"" Statuszeile
+" Statusline
     set laststatus=2
-    "" this statusline does not work under MS Windows
-    "set statusline=%n:\ %f%m%r%h%w\ [%Y,%{%fileencoding},%{&fileformat}]\ [%l-%L,%v][%p%%%]\ [%{strftime(\"%l:%M:%S\ \%p,\ %a\ %b\ %d,\ %Y\")}]
     set ruler
-    ""set rulerformat=%25(%n%m%r;\ %Y\ [%l,%v]\ %p%%%)
     set showmode
     set number
-    "" from http://spf13.com/post/perfect-vimrc-vim-config-file/
+    " from http://spf13.com/post/perfect-vimrc-vim-config-file/
     if has('cmdline_info')
         set ruler                   " show the ruler
         set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
@@ -70,59 +65,58 @@ unlet s:cpo_save
         "set statusline+=\ [A=\%03.3b/H=\%02.2B] " ASCII / Hexadecimal value of char
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
     endif
-    "" endfrom http://spf13.com/post/perfect-vimrc-vim-config-file/
+    " endfrom http://spf13.com/post/perfect-vimrc-vim-config-file/
 
-"" optical positioning
+" optical positioning
     set cursorline
     set cursorcolumn
     set mouse=a
+" paer print setup
     set printoptions=paper:a4
-"" Tab-Einstellungen
-    set expandtab   "" Tabs zu Leerschritten
+" tab settings
+    set expandtab   " use spaces instead of tabs
     set shiftwidth=4
     set softtabstop=4
     set tabstop=4
-"" Einrück und Folding
+" indentation and folding
     set smartindent
     set autoindent
     set backspace=indent,eol,start
     set foldmethod=indent
-"" Zeileneinstellungen
+" linebreaks and wraps
     set textwidth=79
-    ""set linebreak
+    "set linebreak
     set wrap
-    ""set list
+    "set list    " show special characters like tabs, space, newlines
 
-set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
-
+" forgot what that's for ;-)
+" set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 " vim: set ft=vim :
 
-"" keymappings
+" my own keymappings here:
+    " switch syntax (on|off)
     map <F9> :if has("syntax_items")<CR>syntax off<CR>else<CR>syntax on<CR>endif<CR><CR>
+    " should insert firefox-style tab-handling here ;-)
 
-"" set my colorscheme
-    ""colorscheme kingtop
-    "" colorscheme night
-    "" colorscheme neon
-    ""colorscheme evening
+" set my colorscheme
+    "colorscheme kingtop
+    "colorscheme night
+    "colorscheme neon
+    "colorscheme evening
     colorscheme zenburn
     "set background=dark
-"" CtrlP settings
+" CtrlP settings
     let g:ctrlp_map = '<c-p>'
     let g:ctrlp_cmd = 'CtrlP'
     let g:ctrlp_working_path_mode = 'ra'
-"" PowerLine settings
+" PowerLine settings
     "let g:Powerline_symbols = 'fancy'
     let g:Powerline_symbols = 'unicode'
-"" UltiSnips like TextMate
-    let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<tab>"
-    let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-""NERDTree settings
-    "" opens NERDTree if no startup-filename is given
+"NERDTree settings
+    " opens NERDTree if no startup-filename is given
     autocmd vimenter * if !argc() | NERDTree | endif
-    "" closes vim if NERDTree is only window left
-    ""autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+    " closes vim if NERDTree is only window left
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
     " Map NERDTreeToggle to convenient key
     nnoremap <silent> <c-n> :NERDTreeToggle<cr>
@@ -140,29 +134,23 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
     ""autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
     autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
 
-"" python-mode settings
-    " Load rope plugin
-    let g:pymode_rope = 1
-    " Additional python paths
-    let g:pymode_paths = ['$HOME\vimfiles\bundle\python-mode', '$HOME\vimfiles\bundle\python-mode\pylibs']
-
-"" tasklist settings
+" tasklist settings
     map T :TaskList<CR>
 
-"" TagList
+" TagList
     "nnoremap <silent> <F8> :TlistToggle<CR>
     "nnoremap <silent> <c-F8> :TlistUpdate<CR>
-    "" open taglist on startup
+    " open taglist on startup
     let Tlist_Auto_Open = 0
-    "" update taglist on filesave
+    " update taglist on filesave
     let Tlist_Auto_Update = 1
-    "" jump into taglist window?
+    " jump into taglist window?
     let Tlist_GainFocus_On_ToggleOpen = 0
 
-"" TagBar
+" TagBar
     nmap <F8> :TagbarToggle<CR>    
 
-"" from: http://vimcasts.org/episodes/whitespace-preferences-and-filetypes/
+" from: http://vimcasts.org/episodes/whitespace-preferences-and-filetypes/
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
   " Enable file type detection
