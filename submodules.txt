@@ -2,3 +2,4 @@ https://github.com/tpope/vim-pathogen
 https://github.com/tpope/vim-fugitive
 https://github.com/scrooloose/syntastic
 https://github.com/scrooloose/nerdtree
+https://github.com/vim-scripts/taglist.vim
